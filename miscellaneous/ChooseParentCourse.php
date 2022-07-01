@@ -26,17 +26,14 @@
 #
 #***************************************************************************************
 include('../../RedirectModulesInc.php');
-$menu['tools']['admin'] = array(
-						
-                               'tools/LogDetails.php'=>'Access Log',
-			       'tools/DeleteLog.php'=>'Delete Log',
-                               'tools/Rollover.php'=>'Rollover',
-                               'tools/Backup.php'=>'Backup Database',
-                               'tools/DataImport.php'=>'Data Import Utility',
-                               'tools/GenerateApi.php'=>'API Token',
-                                1=>'Reports',  
-                               'tools/Reports.php?func=Basic'=>'At a Glance',
-                               'tools/Reports.php?func=Ins_r'=>'Institute Reports',
-//                               'tools/Reports.php?func=Ins_cf'=>'Institute Custom Field Reports',                                
-    );
+	$_REQUEST['modfunc'] = 'choose_course';
+	if(!$_REQUEST['course_period_id'])
+		include 'modules/scheduling/CoursesforWindow.php';
+	else
+	{
+		$course_title = DBGet(DBQuery('SELECT TITLE FROM course_periods WHERE COURSE_PERIOD_ID=\''.$_REQUEST['course_period_id'].'\''));
+		$course_title = $course_title[1]['TITLE'] . '<INPUT type=hidden name=w_course_period_id value='.$_REQUEST['course_period_id'].'>';
+		echo "<script language=javascript>opener.document.getElementById(\"course_div\").innerHTML = \"$course_title</small>\"; window.close();</script>";
+	}
+
 ?>

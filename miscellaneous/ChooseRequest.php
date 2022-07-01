@@ -26,17 +26,16 @@
 #
 #***************************************************************************************
 include('../../RedirectModulesInc.php');
-$menu['tools']['admin'] = array(
-						
-                               'tools/LogDetails.php'=>'Access Log',
-			       'tools/DeleteLog.php'=>'Delete Log',
-                               'tools/Rollover.php'=>'Rollover',
-                               'tools/Backup.php'=>'Backup Database',
-                               'tools/DataImport.php'=>'Data Import Utility',
-                               'tools/GenerateApi.php'=>'API Token',
-                                1=>'Reports',  
-                               'tools/Reports.php?func=Basic'=>'At a Glance',
-                               'tools/Reports.php?func=Ins_r'=>'Institute Reports',
-//                               'tools/Reports.php?func=Ins_cf'=>'Institute Custom Field Reports',                                
-    );
+$_REQUEST['modfunc'] = 'choose_course';
+if(!$_REQUEST['course_id'])
+	include 'modules/scheduling/CoursesforWindow.php';
+else
+{
+	$course_title = DBGet(DBQuery('SELECT TITLE FROM courses WHERE COURSE_ID=\''.$_REQUEST['course_id'].'\''));
+	$course_title = $course_title[1]['TITLE']. '<INPUT type=hidden name=request_course_id value='.$_REQUEST['course_id'].'>';
+
+	echo "<script language=javascript>opener.document.getElementById(\"request_div\").innerHTML = \"$course_title<div class=mb-10><label class=checkbox-inline><INPUT class=styled type=checkbox name=not_request_course value=Y>Not Requested</label></div>\"; window.close(); opener.styledCheckboxRadioInit();</script>";
+}
+
+echo '<script src="assets/js/core/libraries/jquery.min.js"></script>';
 ?>

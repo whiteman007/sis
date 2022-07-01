@@ -25,18 +25,12 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #***************************************************************************************
+// set number of days before and after the selected school date that attendance can be editted by teachers
+// set to '' to always allow (2.9.1 and earlier behavior)
+// set to '0' to allow today only
+// note: the value '0' needs to be a string, other numeric values can be a number or a string
 include('../../RedirectModulesInc.php');
-$menu['tools']['admin'] = array(
-						
-                               'tools/LogDetails.php'=>'Access Log',
-			       'tools/DeleteLog.php'=>'Delete Log',
-                               'tools/Rollover.php'=>'Rollover',
-                               'tools/Backup.php'=>'Backup Database',
-                               'tools/DataImport.php'=>'Data Import Utility',
-                               'tools/GenerateApi.php'=>'API Token',
-                                1=>'Reports',  
-                               'tools/Reports.php?func=Basic'=>'At a Glance',
-                               'tools/Reports.php?func=Ins_r'=>'Institute Reports',
-//                               'tools/Reports.php?func=Ins_cf'=>'Institute Custom Field Reports',                                
-    );
+$edit_days_before = '';
+$edit_days_after = '';
+
 ?>

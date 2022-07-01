@@ -1,4 +1,5 @@
 <?php
+
 #**************************************************************************
 #  openSIS is a free student information system for public and non-public 
 #  schools from Open Solutions for Education, Inc. web: www.os4ed.com
@@ -26,17 +27,12 @@
 #
 #***************************************************************************************
 include('../../RedirectModulesInc.php');
-$menu['tools']['admin'] = array(
-						
-                               'tools/LogDetails.php'=>'Access Log',
-			       'tools/DeleteLog.php'=>'Delete Log',
-                               'tools/Rollover.php'=>'Rollover',
-                               'tools/Backup.php'=>'Backup Database',
-                               'tools/DataImport.php'=>'Data Import Utility',
-                               'tools/GenerateApi.php'=>'API Token',
-                                1=>'Reports',  
-                               'tools/Reports.php?func=Basic'=>'At a Glance',
-                               'tools/Reports.php?func=Ins_r'=>'Institute Reports',
-//                               'tools/Reports.php?func=Ins_cf'=>'Institute Custom Field Reports',                                
-    );
+$_REQUEST['modname'] = "tools/LogDetails.php";
+$js_extra = "window.location.href = window.location.href.replace('Search.php','LogDetails.php');";
+
+$modcat = 'tools';
+if (AllowUse($_REQUEST['modname'])) {
+    //echo "<SCRIPT language=javascript>".$js_extra."parent.help.location=\"Bottom.php?modcat=$modcat&modname=$_REQUEST[modname]\";</SCRIPT>";
+    include("modules/$_REQUEST[modname]");
+}
 ?>
