@@ -25,41 +25,24 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #***************************************************************************************
+// config variables for include/AddressInc.php
+// set this to false to disable auto-pull-downs for the contact info Description field
 include('../../RedirectModulesInc.php');
-$menu['messaging']['admin'] = array(
-						'messaging/Inbox.php'=>'Inbox',
-						'messaging/Compose.php'=>'Compose',
-						'messaging/SentMail.php'=>'Sent Message',
-						'messaging/Trash.php'=>'Trash', 
+$info_apd = true;
+// set this to false to disable mailing address display
+$use_mailing = true;
+// set this to false to disable bus pickoff/dropoff defaulting checked
+$use_bus = true;
+// set this to false to disable legacy contact info
+$use_contact = true;
+// these are the static items for the dynamic select lists in the format
 
-                                                'messaging/Group.php'=>'Groups'		
-					);
+$city_options = array('Kokomo'=>'Kokomo');
+$state_options = array('IN'=>'IN');
+$zip_options = array('46901'=>'46901','46902'=>'46902');
 
-$menu['messaging']['teacher'] = array(
-						'messaging/Inbox.php'=>'Inbox',
-						'messaging/Compose.php'=>'Compose',
-						'messaging/SentMail.php'=>'Sent Message',
-						'messaging/Trash.php'=>'Trash', 
-                                         
-                                                'messaging/Group.php'=>'Groups'		
-					);
-
-$menu['messaging']['parent'] = array(
-						'messaging/Inbox.php'=>'Inbox',
-						'messaging/Compose.php'=>'Compose',
-						'messaging/SentMail.php'=>'Sent Message',
-						'messaging/Trash.php'=>'Trash',
-                                             
-                                                'messaging/Group.php'=>'Groups'		
-					);
-$menu['messaging']['student'] = array(
-						'messaging/Inbox.php'=>'Inbox',
-						'messaging/Compose.php'=>'Compose',
-						'messaging/SentMail.php'=>'Sent Message',
-						'messaging/Trash.php'=>'Trash',
-                                           
-                                                'messaging/Group.php'=>'Groups'		
-					);
-
+$relation_options = array('Father'=>'Father','Mother'=>'Mother','Step Mother'=>'Step Mother','Step Father'=>'Step Father','Grandmother'=>'Grandmother','Grandfather'=>'Grandfather','Legal Guardian'=>'Legal Guardian','Other Family Member'=>'Other Family Member');
+if($info_apd)
+	$info_options_x = array('Phone'=>'Phone','Cell Phone'=>'Cell Phone','Work Phone'=>'Work Phone','Employer'=>'Employer');
 
 ?>

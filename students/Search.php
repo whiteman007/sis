@@ -1,4 +1,5 @@
 <?php
+
 #**************************************************************************
 #  openSIS is a free student information system for public and non-public 
 #  schools from Open Solutions for Education, Inc. web: www.os4ed.com
@@ -26,40 +27,15 @@
 #
 #***************************************************************************************
 include('../../RedirectModulesInc.php');
-$menu['messaging']['admin'] = array(
-						'messaging/Inbox.php'=>'Inbox',
-						'messaging/Compose.php'=>'Compose',
-						'messaging/SentMail.php'=>'Sent Message',
-						'messaging/Trash.php'=>'Trash', 
-
-                                                'messaging/Group.php'=>'Groups'		
-					);
-
-$menu['messaging']['teacher'] = array(
-						'messaging/Inbox.php'=>'Inbox',
-						'messaging/Compose.php'=>'Compose',
-						'messaging/SentMail.php'=>'Sent Message',
-						'messaging/Trash.php'=>'Trash', 
-                                         
-                                                'messaging/Group.php'=>'Groups'		
-					);
-
-$menu['messaging']['parent'] = array(
-						'messaging/Inbox.php'=>'Inbox',
-						'messaging/Compose.php'=>'Compose',
-						'messaging/SentMail.php'=>'Sent Message',
-						'messaging/Trash.php'=>'Trash',
-                                             
-                                                'messaging/Group.php'=>'Groups'		
-					);
-$menu['messaging']['student'] = array(
-						'messaging/Inbox.php'=>'Inbox',
-						'messaging/Compose.php'=>'Compose',
-						'messaging/SentMail.php'=>'Sent Message',
-						'messaging/Trash.php'=>'Trash',
-                                           
-                                                'messaging/Group.php'=>'Groups'		
-					);
-
-
+$modcat = 'students';
+$_REQUEST['modname'] = '';
+if (AllowUse('students/Student.php')) {
+    $_REQUEST['modname'] = $_REQUEST['next_modname'] = 'students/Student.php';
+    if (User('PROFILE') == 'parent' || User('PROFILE') == 'student')
+        $_REQUEST['search_modfunc'] = 'list';
+}
+if ($_REQUEST['modname']) {
+    //echo "<SCRIPT language=javascript>parent.help.location=\"Bottom.php?modcat=$modcat&modname=$_REQUEST[modname]\";</SCRIPT>";
+    include("modules/$_REQUEST[modname]");
+}
 ?>
